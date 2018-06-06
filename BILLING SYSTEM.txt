@@ -1,0 +1,602 @@
+package BillingSystems;
+
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import javax.swing.JCheckBox;
+import javax.swing.JTextField;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JSeparator;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+import javax.swing.SwingConstants;
+import javax.swing.DropMode;
+import java.awt.ComponentOrientation;
+import java.awt.Component;
+import java.awt.Rectangle;
+
+@SuppressWarnings("unused")
+public class Billing_systems {
+
+	private JFrame frame;
+	private JTextField txtLabour;
+	private JTextField txtTravel;
+	private JTextField txtPlastic;
+	private JTextField txtChrome;
+	private JTextField txtCopper;
+	private JTextField txtcostLabour;
+	private JTextField txtcostTravel;
+	private JTextField txtcostPlastic;
+	private JTextField txtcostCopper;
+	private JTextField txtcostChrome;
+	private JTextField txtSubTotal;
+	private JTextField txtTax;
+	private JTextField txtTotal;
+
+	double LABOUR = 40;
+	double TRAVEL = 3;
+	double PLASTIC = 5.5;
+	double COPPER = 7.5;
+	double CHROME = 8.5;
+	double iTAX = 0.75;
+	private JTextField area;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Billing_systems window = new Billing_systems();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public Billing_systems() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowActivated(WindowEvent arg0) {
+				txtLabour.setEnabled(false);
+				txtTravel.setEnabled(false);
+				txtPlastic.setEnabled(false);
+				txtCopper.setEnabled(false);
+				txtChrome.setEnabled(false);
+
+			}
+		});
+		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 30));
+		frame.setBounds(0, 0, 1370, 800);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		JPanel panel = new JPanel();
+		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+
+		JLabel lblOnlineBillingSystem = new JLabel("ONLINE BILLING SYSTEM");
+		lblOnlineBillingSystem.setFont(new Font("Tahoma", Font.BOLD, 25));
+		panel.add(lblOnlineBillingSystem);
+
+		JCheckBox chckbxLabour = new JCheckBox("LABOUR");
+		chckbxLabour.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (chckbxLabour.isSelected()) {
+					txtLabour.setEnabled(true);
+					txtLabour.setText("0");
+					txtLabour.requestFocus();
+				} else {
+					txtLabour.setEnabled(false);
+					txtLabour.setText(" ");
+				}
+
+			}
+		});
+		chckbxLabour.setFont(new Font("Tahoma", Font.BOLD, 30));
+
+		JCheckBox chckbxTravel = new JCheckBox("TRAVEL");
+		chckbxTravel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (chckbxTravel.isSelected()) {
+					txtTravel.setEnabled(true);
+					txtTravel.setText("0");
+					txtTravel.requestFocus();
+				} else {
+					txtTravel.setEnabled(false);
+					txtTravel.setText(" ");
+				}
+			}
+		});
+		chckbxTravel.setFont(new Font("Tahoma", Font.BOLD, 30));
+
+		JCheckBox chckbxPlastic = new JCheckBox("PLASTIC");
+		chckbxPlastic.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (chckbxPlastic.isSelected()) {
+					txtPlastic.setEnabled(true);
+					txtPlastic.setText("0");
+					txtPlastic.requestFocus();
+				} else {
+					txtPlastic.setEnabled(false);
+					txtPlastic.setText(" ");
+				}
+			}
+		});
+		chckbxPlastic.setFont(new Font("Tahoma", Font.BOLD, 30));
+
+		JCheckBox chckbxCopper = new JCheckBox("COPPER");
+		chckbxCopper.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (chckbxCopper.isSelected()) {
+					txtCopper.setEnabled(true);
+					txtCopper.setText("0");
+					txtCopper.requestFocus();
+				} else {
+					txtCopper.setEnabled(false);
+					txtCopper.setText(" ");
+				}
+			}
+		});
+		chckbxCopper.setFont(new Font("Tahoma", Font.BOLD, 30));
+
+		JCheckBox chckbxChrome = new JCheckBox("CHROME");
+		chckbxChrome.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (chckbxChrome.isSelected()) {
+					txtChrome.setEnabled(true);
+					txtChrome.setText("0");
+					txtChrome.requestFocus();
+				} else {
+					txtChrome.setEnabled(false);
+					txtChrome.setText(" ");
+				}
+			}
+		});
+		chckbxChrome.setFont(new Font("Tahoma", Font.BOLD, 30));
+
+		txtLabour = new JTextField();
+		txtLabour.setText("0");
+		txtLabour.setHorizontalAlignment(SwingConstants.CENTER);
+		txtLabour.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		txtLabour.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		txtLabour.setColumns(10);
+
+		txtTravel = new JTextField();
+		txtTravel.setText("0");
+		txtTravel.setHorizontalAlignment(SwingConstants.CENTER);
+		txtTravel.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		txtTravel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		txtTravel.setColumns(10);
+
+		txtPlastic = new JTextField();
+		txtPlastic.setText("0");
+		txtPlastic.setHorizontalAlignment(SwingConstants.CENTER);
+		txtPlastic.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		txtPlastic.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		txtPlastic.setColumns(10);
+
+		txtChrome = new JTextField();
+		txtChrome.setText("0");
+		txtChrome.setHorizontalAlignment(SwingConstants.CENTER);
+		txtChrome.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		txtChrome.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		txtChrome.setColumns(10);
+
+		txtCopper = new JTextField();
+		txtCopper.setText("0");
+		txtCopper.setHorizontalAlignment(SwingConstants.CENTER);
+		txtCopper.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		txtCopper.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		txtCopper.setColumns(10);
+
+		JLabel CostOfLabour = new JLabel("COST OF LABOUR");
+		CostOfLabour.setFont(new Font("Tahoma", Font.BOLD, 30));
+
+		JLabel CostOfTravel = new JLabel("COST OF TRAVEL");
+		CostOfTravel.setFont(new Font("Tahoma", Font.BOLD, 30));
+
+		JLabel CostOfPlastic = new JLabel("COST OF PLASTIC");
+		CostOfPlastic.setFont(new Font("Tahoma", Font.BOLD, 30));
+
+		JLabel CostOfCopper = new JLabel(" COST OF COPPER");
+		CostOfCopper.setFont(new Font("Tahoma", Font.BOLD, 30));
+
+		JLabel lblCostOfChrome = new JLabel("COST OF CHROME");
+		lblCostOfChrome.setFont(new Font("Tahoma", Font.BOLD, 30));
+
+		JLabel CostOfChrome = new JLabel("COST OF CHROME");
+		CostOfChrome.setFont(new Font("Tahoma", Font.BOLD, 30));
+
+		txtcostLabour = new JTextField();
+		txtcostLabour.setHorizontalAlignment(SwingConstants.CENTER);
+		txtcostLabour.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtcostLabour.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		txtcostLabour.setColumns(10);
+
+		txtcostTravel = new JTextField();
+		txtcostTravel.setHorizontalAlignment(SwingConstants.CENTER);
+		txtcostTravel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtcostTravel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		txtcostTravel.setColumns(10);
+
+		txtcostPlastic = new JTextField();
+		txtcostPlastic.setHorizontalAlignment(SwingConstants.CENTER);
+		txtcostPlastic.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtcostPlastic.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		txtcostPlastic.setColumns(10);
+
+		txtcostCopper = new JTextField();
+		txtcostCopper.setHorizontalAlignment(SwingConstants.CENTER);
+		txtcostCopper.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtcostCopper.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		txtcostCopper.setColumns(10);
+
+		txtcostChrome = new JTextField();
+		txtcostChrome.setHorizontalAlignment(SwingConstants.CENTER);
+		txtcostChrome.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		txtcostChrome.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		txtcostChrome.setColumns(10);
+
+		JLabel SubTotal = new JLabel("SUB TOTAL");
+		SubTotal.setFont(new Font("Tahoma", Font.BOLD, 25));
+
+		JLabel Tax = new JLabel("TAX");
+		Tax.setFont(new Font("Tahoma", Font.BOLD, 25));
+
+		JLabel Total = new JLabel("TOTAL");
+		Total.setFont(new Font("Tahoma", Font.BOLD, 25));
+
+		txtSubTotal = new JTextField();
+		txtSubTotal.setFont(new Font("Tahoma", Font.BOLD, 30));
+		txtSubTotal.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		txtSubTotal.setColumns(10);
+
+		txtTax = new JTextField();
+		txtTax.setFont(new Font("Tahoma", Font.BOLD, 30));
+		txtTax.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		txtTax.setColumns(10);
+
+		txtTotal = new JTextField();
+		txtTotal.setFont(new Font("Tahoma", Font.BOLD, 30));
+		txtTotal.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		txtTotal.setColumns(10);
+
+		JButton btnTotalCost = new JButton("TOTAL COST");
+		btnTotalCost.setFont(new Font("Tahoma", Font.BOLD, 25));
+		btnTotalCost.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				double L = LABOUR * Double.parseDouble(txtLabour.getText());
+				double T = TRAVEL * Double.parseDouble(txtTravel.getText());
+				double P = PLASTIC * Double.parseDouble(txtPlastic.getText());
+				double C = COPPER * Double.parseDouble(txtCopper.getText());
+				double CH = CHROME * Double.parseDouble(txtChrome.getText());
+
+				double SumUp = L + T + P + C + CH;
+
+				double cTAX = (iTAX * SumUp) / 100;
+
+				String S = String.format("$ %.2f", SumUp);
+				txtSubTotal.setText(S);
+
+				String tTAX = String.format("$ %.2f", cTAX);
+				txtTax.setText(tTAX);
+
+				double SUMTOTAL = SumUp + cTAX;
+
+				String tTOTAL = String.format("$ %.2f", SUMTOTAL);
+				txtTotal.setText(tTOTAL);
+
+				String COST_OF_L = String.format("$ %.2f", L);
+				txtcostLabour.setText(COST_OF_L);
+
+				String COST_OF_T = String.format("$ %.2f", T);
+				txtcostTravel.setText(COST_OF_T);
+
+				String COST_OF_P = String.format("$ %.2f", P);
+				txtcostPlastic.setText(COST_OF_P);
+
+				String COST_OF_C = String.format("$ %.2f", C);
+				txtcostCopper.setText(COST_OF_C);
+
+				String COST_OF_CH = String.format("$ %.2f", CH);
+				txtcostChrome.setText(COST_OF_CH);
+
+			}
+		});
+
+		JButton btnReset = new JButton("RESET");
+		btnReset.setToolTipText("RESET");
+		btnReset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				txtTax.setText(null);
+				txtSubTotal.setText(null);
+				txtTotal.setText(null);
+				txtCopper.setText(null);
+				txtChrome.setText(null);
+				txtLabour.setText(null);
+				txtTravel.setText(null);
+				txtPlastic.setText(null);
+
+				txtcostCopper.setText(null);
+				txtcostChrome.setText(null);
+				txtcostLabour.setText(null);
+				txtcostTravel.setText(null);
+				txtcostPlastic.setText(null);
+				area.setText(null);
+
+				chckbxLabour.setSelected(false);
+				chckbxTravel.setSelected(false);
+				chckbxChrome.setSelected(false);
+				chckbxCopper.setSelected(false);
+				chckbxPlastic.setSelected(false);
+			}
+
+		});
+		btnReset.setFont(new Font("Tahoma", Font.BOLD, 30));
+		btnReset.setToolTipText("Reset");
+		btnReset.setBounds(389, 621, 228, 42);
+		frame.getContentPane().add(btnReset);
+
+		JButton btnReceipt = new JButton("RECEIPT");
+		btnReceipt.setFont(new Font("Tahoma", Font.BOLD, 25));
+		btnReceipt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				area.setText("********\n");
+				area.setText(area.getText() + "*     Online Billing System    *\n");
+				area.setText(area.getText() + "********\n");
+			
+				Date obj = new Date();
+				String date = obj.toString();
+				
+
+				area.setText(area.getText() + "\n" + date + "\n\n");
+			
+				area.setText(area.getText() + "Cost Of Labour : " + txtcostLabour.getText() + "\n\n");
+
+				area.setText(area.getText() + "Cost Of Travel :" + txtcostTravel.getText() + "\n\n");
+
+				area.setText(area.getText() + "Cost Of Plastic :" + txtcostPlastic.getText() + "\n\n");
+
+				area.setText(area.getText() + "Cost Of Copper :" + txtcostCopper.getText() + "\n\n");
+
+				area.setText(area.getText() + "Cost Of Copper :" + txtcostCopper.getText() + "\n\n");
+
+				area.setText(area.getText() + "Tax :" + txtTax.getText() + "\n\n");
+
+				area.setText(area.getText() + "Sub Total :" + txtSubTotal.getText() + "\n\n");
+
+				area.setText(area.getText() + "Total :" + txtTotal.getText() + "\n\n");
+			
+				
+			}});
+
+
+
+
+
+
+		JSeparator separator = new JSeparator();
+
+		JSeparator separator_1 = new JSeparator();
+
+		JSeparator separator_2 = new JSeparator();
+
+		JButton button = new JButton("EXIT");
+		button.setFont(new Font("Tahoma", Font.BOLD, 25));
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				frame = new JFrame("Exit");
+				if (JOptionPane.showConfirmDialog(frame, "confirm if you want to exit", "Billing Systems",
+						JOptionPane.YES_NO_OPTION) == JOptionPane.YES_NO_OPTION) {
+					System.exit(0);
+				}
+
+			}
+		});
+
+		area = new JTextField();
+		area.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		area.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		area.setHorizontalAlignment(SwingConstants.CENTER);
+		area.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		area.setColumns(10);
+
+	
+
+		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(81)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 1193, GroupLayout.PREFERRED_SIZE)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(94)
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(separator_1, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
+									.addGap(18))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(btnTotalCost)
+									.addGap(62)))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(btnReset)
+							.addGap(47)
+							.addComponent(btnReceipt)
+							.addGap(42)
+							.addComponent(button, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(SubTotal)
+										.addComponent(Tax)
+										.addComponent(Total, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE))
+									.addGap(18)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(txtSubTotal, GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+										.addComponent(txtTax, 0, 0, Short.MAX_VALUE)
+										.addComponent(txtTotal, 0, 0, Short.MAX_VALUE)))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(1)
+									.addComponent(separator_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(chckbxChrome, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE)
+									.addGap(24)
+									.addComponent(txtChrome, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
+									.addGap(45)
+									.addComponent(CostOfChrome)
+									.addGap(22)
+									.addComponent(txtcostChrome, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(chckbxLabour, GroupLayout.PREFERRED_SIZE, 182, GroupLayout.PREFERRED_SIZE)
+									.addGap(6)
+									.addComponent(txtLabour, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
+									.addGap(47)
+									.addComponent(CostOfLabour)
+									.addGap(27)
+									.addComponent(txtcostLabour, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(chckbxTravel, GroupLayout.PREFERRED_SIZE, 164, GroupLayout.PREFERRED_SIZE)
+									.addGap(25)
+									.addComponent(txtTravel, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
+									.addGap(47)
+									.addComponent(CostOfTravel)
+									.addGap(37)
+									.addComponent(txtcostTravel, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(chckbxPlastic)
+									.addGap(33)
+									.addComponent(txtPlastic, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
+									.addGap(47)
+									.addComponent(CostOfPlastic)
+									.addGap(23)
+									.addComponent(txtcostPlastic, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE))
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addGap(188)
+											.addComponent(txtCopper, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE))
+										.addComponent(chckbxCopper, GroupLayout.PREFERRED_SIZE, 236, GroupLayout.PREFERRED_SIZE))
+									.addGap(36)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(separator, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
+										.addGroup(groupLayout.createSequentialGroup()
+											.addComponent(CostOfCopper)
+											.addGap(32)
+											.addComponent(txtcostCopper, GroupLayout.PREFERRED_SIZE, 165, GroupLayout.PREFERRED_SIZE)))))
+							.addGap(6)
+							.addComponent(area, GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)))
+					.addGap(10))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addGap(48)
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(48)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(3)
+									.addComponent(chckbxLabour, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+								.addComponent(txtLabour, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+								.addComponent(CostOfLabour, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtcostLabour, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(40)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(3)
+									.addComponent(chckbxTravel, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+								.addComponent(txtTravel, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+								.addComponent(CostOfTravel, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtcostTravel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(35)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(chckbxPlastic, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtPlastic, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+								.addComponent(CostOfPlastic, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtcostPlastic, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(22)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(txtCopper, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(7)
+									.addComponent(chckbxCopper, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+								.addComponent(CostOfCopper)
+								.addComponent(txtcostCopper, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(18)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGap(1)
+									.addComponent(chckbxChrome, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+									.addComponent(separator_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(txtChrome, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+								.addComponent(CostOfChrome, GroupLayout.PREFERRED_SIZE, 29, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtcostChrome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(SubTotal)
+								.addComponent(txtSubTotal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(26)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(txtTax, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(Tax))
+							.addGap(26)
+							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+								.addComponent(txtTotal, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(Total))
+							.addGap(27)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+									.addComponent(btnReceipt)
+									.addComponent(button, GroupLayout.PREFERRED_SIZE, 36, Short.MAX_VALUE))
+								.addComponent(btnReset, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(btnTotalCost)
+									.addGap(20)
+									.addComponent(separator_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addGap(34))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(11)
+							.addComponent(separator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(6)
+							.addComponent(area, GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)))
+					.addGap(11))
+		);
+		frame.getContentPane().setLayout(groupLayout);
+	}
+}
